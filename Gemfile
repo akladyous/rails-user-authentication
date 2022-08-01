@@ -60,6 +60,8 @@ group :development do
     gem "web-console"
     gem "debug", platforms: %i[ mri mingw x64_mingw ]
     gem 'byebug', '~> 11.1', '>= 11.1.3'
+    gem 'rubocop', '~> 1.32'
+    gem 'rubocop-rails', '~> 2.15', '>= 2.15.2'
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
