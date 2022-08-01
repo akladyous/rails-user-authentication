@@ -1,0 +1,75 @@
+/********** Template CSS **********/
+:root {
+    --primary: #4ac4f3;
+    --light: #edf5ff;
+    --dark: #202942;
+}
+/* navbar */
+.navbar {
+    background-color: var(--primary);
+    padding: 5px 25px !important;
+    height: 70px;
+}
+.navbar .navbar-brand {
+    color: var(--light);
+}
+.navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-nav .nav-link.active {
+    color: var(--light);
+}
+.sticky-top.navbar .navbar-nav .nav-link {
+    padding: 20px 0;
+    color: var(--dark);
+}
+.sticky-top.navbar .navbar-nav .nav-link:hover,
+.sticky-top.navbar .navbar-nav .nav-link.active {
+    padding: 20px 0;
+    color: var(--light);
+}
+
+.navbar .dropdown-toggle::after {
+    border: none;
+    content: "\f067";
+    font-family: "Font Awesome 5 Free";
+    font-size: 10px;
+    font-weight: bold;
+    vertical-align: middle;
+    margin-left: 8px;
+}
+.navbar .navbar-nav .nav-link {
+    position: relative;
+    margin-right: 25px;
+    /* padding: 35px 0; */
+    font-weight: 500;
+    color: var(--light);
+    outline: none;
+    transition: 1s;
+}
+
+.card-header {
+    background-color: var(--primary) !important;
+    color: var(--light) !important;
+}
+
+.btn-form {
+    background-color: var(--primary) !important;
+    color: var(--light) !important;
+}
+.user-menu {
+    display: flex;
+    justify-items: center;
+}
+/* btn btn-light rounded-pill py-2 px-4 ms-3 d-none d-lg-block */
+.user-menu .btn {
+    border: none;
+    border-radius: 25px;
+    padding-block: 8px !important;
+    padding-inline: 20px !important;
+    margin: 0 20px;
+}
+.user-signup {
+    color: var(--light);
+    text-decoration: none;
+    background-color: transparent;
+    margin: auto;
+}
