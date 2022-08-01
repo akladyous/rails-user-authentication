@@ -1,0 +1,19 @@
+<% if current_user %>
+                <span><%= current_user.email %></span>
+                <%=
+                    link_to "Logout",
+                    destroy_user_session_path,
+                    {class: "btn btn-light d-none d-lg-block"}
+                %>
+            <% else %>
+                <%=
+                    link_to "Signup",
+                    new_user_registration_path,
+                    {class: "user-signup" }
+                %>
+                <%=
+                    link_to "Login",
+                    new_user_session_path,
+                    {class: "btn btn-light d-none d-lg-block"}
+                %>
+            <% end %>
