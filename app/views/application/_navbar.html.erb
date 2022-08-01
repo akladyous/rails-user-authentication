@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+    <%= link_to root_path, {'class': 'navbar-brand p-0'} do %>
+        <!-- <h5 className="m-0 p-0">devise</h5> -->
+        <%= image_tag("rails.jpeg", { 'width': 35, 'height': 35, 'alt': 'ruby on rails'}) %>
+    <% end %>
+
+    <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+    >
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mx-auto py-0">
+            <%= link_to "home", root_path, {class: "nav-link", 'aria-current': "page" } %>
+            <%= link_to "about", root_path, {class: "nav-link", 'aria-current': "page" } %>
+            <%= link_to "overview", root_path, {class: "nav-link", 'aria-current': "line" } %>
+            <%= link_to "features", root_path, {class: "nav-link", 'aria-current': "line" } %>
+            <%= link_to "pricing", root_path, {class: "nav-link", 'aria-current': "line" } %>
+            <%= link_to "testimonial", root_path, {class: "nav-link", 'aria-current': "line" } %>
+            <%= link_to "contact", root_path, {class: "nav-link", 'aria-current': "line" } %>
+        </div>
+
+        <div class="user-menu">
+            <% if current_user %>
+                <span><%= current_user.email %></span>
+                <%=
+                    link_to "Logout",
+                    destroy_user_session_path,
+                    {class: "btn btn-light d-none d-lg-block"}
+                %>
+            <% else %>
+                <%=
+                    link_to "Signup",
+                    new_user_registration_path,
+                    {class: "user-signup" }
+                %>
+                <%=
+                    link_to "Login",
+                    new_user_session_path,
+                    {class: "btn btn-light d-none d-lg-block"}
+                %>
+            <% end %>
+        </div>
+    </div>
+</nav>
