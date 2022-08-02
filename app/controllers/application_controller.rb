@@ -19,4 +19,6 @@ class ApplicationController < ActionController::Base
   def logout user
     session.delete :user_id
   end
+
+  helper_method :current_user
 end
