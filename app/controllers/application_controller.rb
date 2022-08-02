@@ -4,9 +4,8 @@ class ApplicationController < ActionController::Base
     protected
 
     def authenticate_user
-        debugger
         unless current_user
-            redirect_to root_path, alert: "You must be signedin" ,status: :unprocessable_entity
+            redirect_to root_path, alert: "You must be signedin" # ,status: :unprocessable_entity
         end
     end
 
