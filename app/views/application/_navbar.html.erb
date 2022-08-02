@@ -28,17 +28,16 @@
 
         <div class="user-menu">
             <% if current_user %>
-                <span><%= current_user.email %></span>
-                <%# link_to "Logout", "/", {class: "btn btn-light d-none d-lg-block"} %>
+                <div class="container-fluid">
+                    <span class="navbar-text">
+                        <span><%= current_user.email %></span>
+                    </span>
+                </div>
                 <%# link_to "Logout", signout_path, method: :delete ,'class': "btn btn-light d-none d-lg-block" %>
                 <%= button_to "logout", signout_path, data: {turbo_method: :delete} ,method: :delete, class: "btn btn-light d-none d-lg-block"  %>
             <% else %>
                 <%= link_to "signup", signup_path, {class: "user-signup" } %>
-                <%=
-                    link_to "Login",
-                    signin_path,
-                    {class: "btn btn-light d-none d-lg-block"}
-                %>
+                <%= link_to "Login", signin_path, {class: "btn btn-light d-none d-lg-block"}%>
             <% end %>
         </div>
     </div>

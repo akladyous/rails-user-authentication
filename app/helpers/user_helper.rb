@@ -1,18 +1,1 @@
-module UserHelper
-  #
-  #         new_user_session GET    /users/sign_in(.:format)       devise/sessions#new
-  #             user_session POST   /users/sign_in(.:format)       devise/sessions#create
-  #     destroy_user_session GET    /users/sign_out(.:format)      devise/sessions#destroy
-  #        new_user_password GET    /users/password/new(.:format)  devise/passwords#new
-  #       edit_user_password GET    /users/password/edit(.:format) devise/passwords#edit
-  #            user_password PATCH  /users/password(.:format)      devise/passwords#update
-  #                          PUT    /users/password(.:format)      devise/passwords#update
-  #                          POST   /users/password(.:format)      devise/passwords#create
-  # cancel_user_registration GET    /users/cancel(.:format)        devise/registrations#cancel
-  #    new_user_registration GET    /users/sign_up(.:format)       devise/registrations#new
-  #   edit_user_registration GET    /users/edit(.:format)          devise/registrations#edit
-  #        user_registration PATCH  /users(.:format)               devise/registrations#update
-  #                          PUT    /users(.:format)               devise/registrations#update
-  #                          DELETE /users(.:format)               devise/registrations#destroy
-  #                          POST   /users(.:format)               devise/registrations#create
-end
+module UserHelper; end #                          POST   /users(.:format)               devise/registrations#create #                          DELETE /users(.:format)               devise/registrations#destroy #                          PUT    /users(.:format)               devise/registrations#update #        user_registration PATCH  /users(.:format)               devise/registrations#update #   edit_user_registration GET    /users/edit(.:format)          devise/registrations#edit #    new_user_registration GET    /users/sign_up(.:format)       devise/registrations#new # cancel_user_registration GET    /users/cancel(.:format)        devise/registrations#cancel #                          POST   /users/password(.:format)      devise/passwords#create #                          PUT    /users/password(.:format)      devise/passwords#update #            user_password PATCH  /users/password(.:format)      devise/passwords#update #       edit_user_password GET    /users/password/edit(.:format) devise/passwords#edit #        new_user_password GET    /users/password/new(.:format)  devise/passwords#new #     destroy_user_session GET    /users/sign_out(.:format)      devise/sessions#destroy #             user_session POST   /users/sign_in(.:format)       devise/sessions#create #         new_user_session GET    /users/sign_in(.:format)       devise/sessions#new #
