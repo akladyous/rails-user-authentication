@@ -1,5 +1,6 @@
-class UsersController < ApplicationController
-    skip_before_action :authenticate_user, only: %i[new create]
+class Users::RegistrationController < Users::UsersController
+    skip_before_action :authenticate_user, only: [:new, :create]
+    # before_action :authenticate_user, except: [:new, :create]
 
     def new
         @user = User.new
