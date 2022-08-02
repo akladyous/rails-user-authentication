@@ -1,6 +1,6 @@
 <div class="container my-3">
     <div class="row justify-content-md-center">
-        <div class="col col-lg-5 col-md-5 col-sm-5">
+        <div class="col col-lg-6 col-md-6 col-sm-5">
             <div class="card">
                 <div class="card-header text-center">
                     Signup Page
@@ -16,9 +16,9 @@
                             <%= f.label :email, {class: 'form-label'} %>
                             <%= f.email_field :email, {class: 'form-control'} %>
                             <% if @user.errors[:email].any? %>
-                                <div class="row justify-content-center mt-2">
+                                <div class="row mt-2">
                                     <div class="col col-auto">
-                                        <p><%=  @user.errors.full_messages_for(:email).uniq.first %></p>
+                                        <p class="text-stat"><%=  @user.errors.full_messages_for(:email).uniq.first %></p>
                                     </div>
                                 </div>
                             <% end %>
@@ -27,9 +27,9 @@
                             <%= f.label :password, {class: 'form-label'} %>
                             <%= f.password_field :password, {class: 'form-control'} %>
                             <% if @user.errors[:password].any? %>
-                                <div class="row justify-content-center mt-2">
+                                <div class="row mt-2">
                                     <div class="col col-auto">
-                                        <p><%=  @user.errors.full_messages_for(:password).uniq.first %></p>
+                                        <p class="text-stat"><%=  @user.errors.full_messages_for(:password).uniq.first %></p>
                                     </div>
                                 </div>
                             <% end %>
@@ -37,12 +37,13 @@
                         <div class="form-group mb-2">
                             <%= f.label :password_confirmation, {class: 'form-label'}  %>
                             <%= f.password_field :password_confirmation, {class: 'form-control'}  %>
+
                             <% if @user.errors[:password_confirmation].any? %>
-                                <div class="row justify-content-center mt-2">
-                                    <div class="col col-auto">
-                                        <p><%=  @user.errors.full_messages_for(:password_confirmation).uniq.first %></p>
-                                    </div>
+                            <div class="row mt-2">
+                                <div class="col col-auto">
+                                    <p class="text-stat"><%=  @user.errors.full_messages_for(:password_confirmation).uniq.first %></p>
                                 </div>
+                            </div>
                             <% end %>
                         </div>
 

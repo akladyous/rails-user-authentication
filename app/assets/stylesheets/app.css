@@ -67,7 +67,7 @@
     padding-inline: 20px !important;
     margin: 0 20px;
 }
-.user-signup {
+.current-user {
     color: var(--light);
     text-decoration: none;
     background-color: transparent;
