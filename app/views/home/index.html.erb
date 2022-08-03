@@ -1,8 +1,7 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<h1>Home Page</h1>
 <%= console %>
 
-<%= render partial: 'shared/flash' %>
+<%= render 'shared/flash' %>
 
 <%# url_for :controller => 'password', :action => 'edit' %>
 <%= link_to 'modifica', edit_user_password_path %>

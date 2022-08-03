@@ -1,15 +1,4 @@
 Rails.application.routes.draw do
-    # namespace :users do
-    #     get 'session/create'
-    #     get 'session/destroy'
-
-    #     # get 'registration/new'
-    #     get 'signup', to: "registration#new"
-
-    #     get 'registration/create'
-    #     get 'registration/cancel'
-    #     get 'registration/destroy'
-    # end
     root 'home#index'
 
     scope :users,  module: :users do
@@ -22,14 +11,15 @@ Rails.application.routes.draw do
         post 'signup', to: 'registration#create'
         get 'cancel', to: 'registration#cancel'
 
-        get 'password', to: 'passwords#new', as: 'edit_user_password'
-        patch 'password', to: 'passwords#update'
+        get 'password', to: 'edit_passwords#new', as: 'edit_user_password'
+        patch 'password', to: 'edit_passwords#update'
+        # get 'password/reset', to: 'password'
     end
 
 
-    namespace(:api, model: :products, path_names: { new: 'neu', update: 'up', edit: 'down' }) do
-        resource :passwords, only: [:new, :update, :edit] ,path: 'prova'
-    end
+    # namespace(:api, model: :products, path_names: { new: 'neu', update: 'up', edit: 'down' }) do
+    #     resource :passwords, only: [:new, :update, :edit] ,path: 'prova'
+    # end
     # resources :users, only: %i[new create destroy] do
     # member do
     #   get 'signin', to: 'session#new'
