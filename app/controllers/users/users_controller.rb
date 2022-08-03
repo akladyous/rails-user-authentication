@@ -5,6 +5,6 @@ class Users::UsersController < ApplicationController
     protected
 
     def password_params
-
+        params.require(:user).permit(:email, :password, :password_confirmation)
     end
 end

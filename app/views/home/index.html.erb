@@ -1,7 +1,9 @@
 <h1>Home Page</h1>
 <%= console %>
 
-<%= render 'shared/flash' %>
+<%= render partial: 'shared/flash' %>
 
 <%# url_for :controller => 'password', :action => 'edit' %>
-<%= link_to 'modifica', edit_user_password_path %>
+<%= link_to 'edit password', edit_user_password_path %>
+<br>
+<%= link_to 'reset password', reset_user_password_path %>
