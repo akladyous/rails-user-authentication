@@ -5,11 +5,9 @@ class Users::SessionController < Users::UsersController
         auth = user.authenticate(user_params[:password]) if user
         respond_to do |format|
             if user.present? && auth
-                login @user
+                login user
                 user.touch :updated_at
-                format.html do
-                    redirect_to root_path, notice: 'login successfully completed', status: :ok
-                end
+                format.html {redirect_to root_path, notice: 'login successfully completed'}
                 format.turbo_stream { redirect_to root_path, notice: 'ok' }
             else
                 flash[:alert] = 'Invalid Email or Password'

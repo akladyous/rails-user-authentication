@@ -21,8 +21,15 @@ Rails.application.routes.draw do
         get 'signup', to: 'registration#new'
         post 'signup', to: 'registration#create'
         get 'cancel', to: 'registration#cancel'
+
+        get 'password', to: 'passwords#new', as: 'edit_user_password'
+        patch 'password', to: 'passwords#update'
     end
 
+
+    namespace(:api, model: :products, path_names: { new: 'neu', update: 'up', edit: 'down' }) do
+        resource :passwords, only: [:new, :update, :edit] ,path: 'prova'
+    end
     # resources :users, only: %i[new create destroy] do
     # member do
     #   get 'signin', to: 'session#new'

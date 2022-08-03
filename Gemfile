@@ -62,7 +62,7 @@ group :development do
     gem 'byebug', '~> 11.1', '>= 11.1.3'
     gem 'rubocop', '~> 1.32'
     gem 'rubocop-rails', '~> 2.15', '>= 2.15.2'
-
+    gem 'pry'
     # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
     # gem "spring"
 end
