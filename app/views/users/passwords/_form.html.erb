@@ -33,9 +33,9 @@
                             <%= f.password_field :new_password_confirmation, {class: 'form-control'} %>
                         </div>
 
+                        <% if @password_form.errors.any? %>
                         <div class="row justify-content-center mt-2">
                             <div class="col col-auto">
-                                <% if @password_form.errors.any? %>
                                 <div class="row mt-2">
                                     <div class="col col-auto">
                                         <p class="text-stat">
@@ -43,15 +43,16 @@
                                         </p>
                                     </div>
                                 </div>
-                            <% end %>
                             </div>
+                            <%= render partial: 'shared/flash' %>
                         </div>
+                        <% end %>
                         <div class="row justify-content-center mt-2">
                             <div class="col col-auto">
                                 <%= f.submit "submit", {class: "btn btn-form rounded-pill py-2 px-4"} %>
                             </div>
                         </div>
-                    <% end %>
+                        <% end %>
                 </div>
             </div>
         </div>

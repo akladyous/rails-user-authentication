@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
     before_action :current_user
+    add_flash_types :warning, :error, :info, :success
 
     protected
 

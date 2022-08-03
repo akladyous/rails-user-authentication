@@ -9,10 +9,6 @@ class PasswordForm
     validates_confirmation_of :new_password
     validate :verify_original_password
 
-    puts ":original_password : ", :original_password
-    puts ":new_password : ", :new_password
-    puts ":new_password_confirmation : ", :new_password_confirmation
-
     def initialize(user)
         @user = user
     end
@@ -28,7 +24,6 @@ class PasswordForm
     end
 
     def submit(params)
-        # debugger
         self.original_password = params[:original_password]
         self.new_password = params[:new_password]
         self.new_password_confirmation = params[:new_password_confirmation]
