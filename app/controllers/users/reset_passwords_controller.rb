@@ -1,4 +1,6 @@
 class Users::ResetPasswordsController < Users::UsersController
+    # before_action :method
+
     def new
         redirect_to root_path, error: 'You are already signed in!' and return if current_user
     end

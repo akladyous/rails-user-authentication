@@ -1,13 +1,17 @@
 class Users::SessionController < Users::UsersController
 
+    attr_accessor :error_message
+
+
     def create
-        user = User.find_by(email: user_params[:email])
+        self.error_message = "invalid email or password"
+        user = User.find_by!(email: user_params[:email])
         auth = user.authenticate(user_params[:password]) if user
         respond_to do |format|
             if user.present? && auth
                 login user
                 user.touch :updated_at
-                format.html {redirect_to root_path, notice: 'login successfully completed'}
+                format.html {redirect_to root_path, error: 'login successfully completed'}
                 format.turbo_stream { redirect_to root_path, notice: 'ok' }
             else
                 flash[:alert] = 'Invalid Email or Password'
