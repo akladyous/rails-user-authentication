@@ -27,9 +27,9 @@ class Users::SessionController < Users::UsersController
         logout current_user if current_user
         reset_session
         respond_to do |format|
-            flash.now[:notice] = "logout successfully completed"
+            flash[:notice] = "logout successfully completed"
             format.html { redirect_to root_path }
-            format.turbo_stream { redirect_to root_path(format: :html) }
+            format.turbo_stream { redirect_to root_path } #root_path(format: :html)
         end
     end
 
