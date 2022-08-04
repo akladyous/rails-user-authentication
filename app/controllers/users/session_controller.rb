@@ -18,6 +18,7 @@ class Users::SessionController < Users::UsersController
 
     def destroy
         logout current_user if current_user
+        reset_session
         respond_to do |format|
             format.html do
                 redirect_to root_path, notice: 'logout compled', status: :ok
