@@ -2,6 +2,8 @@ class Users::SessionController < Users::UsersController
 
     attr_accessor :error_message
 
+    def new
+    end
 
     def create
         self.error_message = "invalid email or password"
@@ -11,11 +13,12 @@ class Users::SessionController < Users::UsersController
             if user.present? && auth
                 login user
                 user.touch :updated_at
-                format.html {redirect_to root_path, error: 'login successfully completed'}
-                format.turbo_stream { redirect_to root_path, notice: 'ok' }
+                format.html {redirect_to root_path, notice: 'login successfully completed'}
+                format.turbo_stream { redirect_to root_path, notice: 'login successfully completed' }
             else
                 flash[:alert] = 'Invalid Email or Password'
                 format.html { render :new, locals: {user: user}, status: :unprocessable_entity }
+                format.turbo_stream { redirect_to :new, locals: {user: user}, status: :unprocessable_entity }
             end
         end
     end
@@ -24,9 +27,8 @@ class Users::SessionController < Users::UsersController
         logout current_user if current_user
         reset_session
         respond_to do |format|
-            format.html do
-                redirect_to root_path, notice: 'logout compled', status: :ok
-            end
+            flash.now[:notice] = "logout successfully completed"
+            format.html { redirect_to root_path }
             format.turbo_stream { redirect_to root_path(format: :html) }
         end
     end

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
         # scope :users do
         get 'signin', to: 'session#new'
         post 'signin', to: 'session#create'
+        get 'signout', to: 'session#destroy'
         delete 'signout', to: 'session#destroy'
 
         get 'signup', to: 'registration#new'
