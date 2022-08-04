@@ -1,10 +1,10 @@
-class Users::ResetPasswordsController < ApplicationController
+class Users::ResetPasswordsController < Users::UsersController
     def new
         redirect_to root_path, error: 'You are already signed in!' and return if current_user
     end
 
     def create
-        @user = User.find_by(email: password_params[:email])
+        @user = User.find_by(email: controller_params[:email])
         if @user.present?
             Users::PasswordMailer.with(user: @user).reset_password.deliver_now
             redirect_to root_path, notice: 'email found' and return
@@ -14,8 +14,7 @@ class Users::ResetPasswordsController < ApplicationController
     end
 
     def edit
-        @user = User.find_signed!(params[:token], purpose: 'reset_password')
-        # binding.irb
+        @user = User.find_signed!(controller_params[:token], purpose: 'reset_password')
         rescue ActiveSupport::MessageVerifier::InvalidSignature
             redirect_to reset_user_password_path, error: 'token is expired'
     end
@@ -24,7 +23,6 @@ class Users::ResetPasswordsController < ApplicationController
         @user = User.find_signed!(params[:token], purpose: 'reset_password')
         # rescue ActiveSupport::MessageVerifier::InvalidSignature
         #     redirect_to reset_user_password_path, error: 'token is expired'
-        # debugger
         if @user.update(password_params)
             redirect_to signin_path, success: 'password changed successfully, signin again'
         else
@@ -35,7 +33,7 @@ class Users::ResetPasswordsController < ApplicationController
 
     protected
 
-    def password_params
-        params.permit(:email, :password, :password_confirmation)
+    def controller_params
+        params.permit(:email, :token)
     end
 end
