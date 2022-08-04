@@ -11,12 +11,13 @@ class Users::RegistrationController < Users::UsersController
             @user = User.new(user_params)
             if @user.save
                 login @user
-                format.html do
-                    redirect_to root_path, notice: 'User account was successfully created'
-                end
+                flash[:notice] = 'User account was successfully created'
+                format.html { redirect_to root_path }
+                format.turbo_stream
             else
                 flash[:alert] = 'User registration failed'
                 format.html { render(:new, status: :unprocessable_entity) }
+                format.turbo_stream
 
             end
         end
@@ -28,6 +29,7 @@ class Users::RegistrationController < Users::UsersController
                 format.html { render 'cancel' }
             else
                 format.html { redirect_to root_path, notice: 'user not found' }
+                format.turbo_stream
             end
         end
     end
@@ -36,10 +38,9 @@ class Users::RegistrationController < Users::UsersController
         user = User.find_by(id: current_user.id)
         user.destroy
         respond_to do |format|
-            format.html do
-                redirect_to root_path,
-                            notice: 'User was successfully destroyed.'
-            end
+            flash[:notice] = 'User account has been successfully deleted'
+            format.html { redirect_to root_path }
+            format.turbo_stream
         end
     end
 
