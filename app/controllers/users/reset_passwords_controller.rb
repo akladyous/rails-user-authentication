@@ -1,5 +1,5 @@
 class Users::ResetPasswordsController < Users::UsersController
-    # before_action :method
+    skip_before_action :authenticate_user
 
     attr_accessor :error_message
 
@@ -11,25 +11,19 @@ class Users::ResetPasswordsController < Users::UsersController
         @user = User.find_by(email: controller_params[:email])
         if @user.present?
             Users::PasswordMailer.with(user: @user).reset_password.deliver_now
-            redirect_to root_path, notice: 'email found' and return
+            flash[:notice] = 'Please check you email and follwing the instruction'
+            redirect_to root_path and return
         else
-            self.error_message = 'Please enter a valid email address'
-            flash[:error] = self.error_message
-            render :new and return
+            render :new, error: 'Please enter a valid email address' and return
         end
     end
 
     def edit
-        self.error_message = 'Token is expired. Please try again'
         @user = User.find_signed!(controller_params[:token], purpose: 'reset_password')
-        rescue ActiveSupport::MessageVerifier::InvalidSignature
-            redirect_to reset_user_password_path, error: self.error_message
     end
 
     def update
         @user = User.find_signed!(params[:token], purpose: 'reset_password')
-        # rescue ActiveSupport::MessageVerifier::InvalidSignature
-        #     redirect_to reset_user_password_path, error: 'token is expired'
         if @user.update(password_params)
             redirect_to signin_path, success: 'password changed successfully, signin again'
         else

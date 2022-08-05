@@ -1,6 +1,6 @@
 class Users::UsersController < ApplicationController
     layout "users"
-    # skip_before_action :authenticate_user, only: %i[new create]
+    before_action :authenticate_user
 
     protected
 

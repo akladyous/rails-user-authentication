@@ -1,24 +1,22 @@
 class Users::SessionController < Users::UsersController
-
-    attr_accessor :error_message
+    skip_before_action :authenticate_user, only: [:new, :create]
 
     def new
     end
 
     def create
-        self.error_message = "invalid email or password"
-        user = User.find_by!(email: user_params[:email])
-        auth = user.authenticate(user_params[:password]) if user
+        @user = User.find_by(email: user_params[:email])
+        auth = @user.authenticate(user_params[:password]) if @user
         respond_to do |format|
-            if user.present? && auth
-                login user
-                user.touch :updated_at
+            if @user.present? && auth
+                login @user
+                @user.touch :updated_at
                 format.html {redirect_to root_path, notice: 'login successfully completed'}
-                format.turbo_stream { redirect_to root_path, notice: 'login successfully completed' }
+                format.turbo_stream
             else
-                flash[:alert] = 'Invalid Email or Password'
-                format.html { render :new, locals: {user: user}, status: :unprocessable_entity }
-                format.turbo_stream { redirect_to :new, locals: {user: user}, status: :unprocessable_entity }
+                flash[:alert] = "invalid email or password"
+                format.html { redirect_back_or_to :new, status: :unprocessable_entity  and return}
+                format.turbo_stream and return
             end
         end
     end

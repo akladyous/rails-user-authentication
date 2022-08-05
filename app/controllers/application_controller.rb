@@ -2,12 +2,13 @@ class ApplicationController < ActionController::Base
     before_action :current_user
     add_flash_types :warning, :error, :info, :success
 
-    # rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
+    rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
     rescue_from ActiveRecord::RecordNotUnique, with: :record_not_unique
     rescue_from ActiveRecord::InvalidForeignKey, with: :invalid_association
     rescue_from AbstractController::DoubleRenderError, with: :interal_error
     rescue_from ActiveRecord::RecordNotSaved, with: :failed_to_save
+    rescue_from ActiveSupport::MessageVerifier::InvalidSignature, with: :invalid_token
 
     helper_method :current_user
 
@@ -33,14 +34,17 @@ class ApplicationController < ActionController::Base
         session.delete :user_id
     end
     # exception methods
+    def invalid_token(exception)
+        redirect_to reset_user_password_path, error: 'Token is expired. Please try again'
+    end
+
     def invalid_record(exception)
         render json: {error: exception.record.errors.full_messages}, status: :unprocessable_entity
     end
     def record_not_found(exception)
-        # debugger
-        flash.now[:notice] = self.error_message
-        # render action_name, status: :unprocessable_entity
-        render :new, status: :unprocessable_entity
+        flash[:error] = exception.message
+        redirect_to action: action_name
+        # redirect_to request.referer ? :back : root_url
     end
     def record_not_unique(exception)
         render json: {error: exception.message}, status: :unprocessable_entity

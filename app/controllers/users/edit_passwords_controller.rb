@@ -1,5 +1,4 @@
 class Users::EditPasswordsController < ApplicationController
-    before_action :authenticate_user
 
     def new
         @password_form = PasswordForm.new(current_user)

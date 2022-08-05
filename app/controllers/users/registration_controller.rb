@@ -1,6 +1,5 @@
 class Users::RegistrationController < Users::UsersController
-    # skip_before_action :authenticate_user, only: [:new, :create]
-    before_action :authenticate_user, except: [:new, :create]
+    skip_before_action :authenticate_user, only: [:new, :create]
 
     def new
         @user = User.new
@@ -28,7 +27,7 @@ class Users::RegistrationController < Users::UsersController
             if current_user
                 format.html { render 'cancel' }
             else
-                format.html { redirect_to root_path, notice: 'user not found' }
+                format.html { redirect_to root_path, error: 'user not found' }
                 format.turbo_stream
             end
         end
@@ -38,8 +37,7 @@ class Users::RegistrationController < Users::UsersController
         user = User.find_by(id: current_user.id)
         user.destroy
         respond_to do |format|
-            flash[:notice] = 'User account has been successfully deleted'
-            format.html { redirect_to root_path }
+            format.html { redirect_to root_path, notice: 'User account has been successfully deleted' }
             format.turbo_stream
         end
     end
