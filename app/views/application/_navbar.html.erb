@@ -26,7 +26,7 @@
             <%= link_to "contact", root_path, {class: "nav-link", 'aria-current': "line" } %>
         </div>
 
-        <div class="user-menu">
+        <div class="navbar-nav user-menu">
             <% if current_user %>
                 <span class="navbar-text current-user">
                     <span><%= current_user.email %></span>
@@ -38,5 +38,7 @@
                 <%= link_to "Login", signin_path, {class: "btn btn-light d-none d-lg-block"}%>
             <% end %>
         </div>
+
+
     </div>
 </nav>
