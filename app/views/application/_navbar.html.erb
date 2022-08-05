@@ -26,11 +26,9 @@
             <%= link_to "contact", root_path, {class: "nav-link", 'aria-current': "line" } %>
         </div>
 
-        <div class="navbar-nav user-menu">
+        <div class="user-menu">
             <% if current_user %>
-                <span class="navbar-text current-user">
-                    <span><%= current_user.email %></span>
-                </span>
+                <%= link_to current_user.email, edit_user_password_path, class: 'current-user' %>
                 <%# link_to "Logout", signout_path, method: :delete ,'class': "btn btn-light d-none d-lg-block" %>
                 <%= button_to "logout", signout_path, data: {turbo_method: :delete} ,method: :delete, class: "btn btn-light d-none d-lg-block"  %>
             <% else %>
@@ -39,6 +37,8 @@
             <% end %>
         </div>
 
+        <%# link_to 'edit password', edit_user_password_path %>
+        <%# link_to 'reset password', reset_user_password_path %>
 
     </div>
 </nav>

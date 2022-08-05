@@ -5,11 +5,6 @@
 
         <%= render 'shared/flash' %>
 
-        <%# url_for :controller => 'password', :action => 'edit' %>
-        <%= link_to 'edit password', edit_user_password_path %>
-        <br>
-        <%= link_to 'reset password', reset_user_password_path %>
-
         <% yield %>
     </div>
 
