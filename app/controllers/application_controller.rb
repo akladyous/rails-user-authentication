@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     rescue_from ActiveSupport::MessageVerifier::InvalidSignature, with: :invalid_token
 
     helper_method :current_user
-
+    # include ApplicationHelper
 
     protected
     def authenticate_user
