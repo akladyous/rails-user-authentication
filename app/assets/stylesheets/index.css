@@ -4,7 +4,9 @@
     --light: #edf5ff;
     --dark: #202942;
 }
-/* navbar */
+.prova {
+    background-color: antiquewhite;
+}
 .navbar {
     background-color: var(--primary);
     padding: 5px 25px !important;
