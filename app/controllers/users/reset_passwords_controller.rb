@@ -14,7 +14,8 @@ class Users::ResetPasswordsController < Users::UsersController
             flash[:notice] = 'Please check you email and follwing the instruction'
             redirect_to root_path and return
         else
-            render :new, error: 'Please enter a valid email address' and return
+          flash[:error] = 'Please enter a valid email address'
+          render :new
         end
     end
 
