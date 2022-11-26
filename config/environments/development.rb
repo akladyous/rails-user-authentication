@@ -66,8 +66,6 @@ Rails.application.configure do
     config.action_mailer.raise_delivery_errors = false
     config.action_mailer.perform_caching = false
     config.action_mailer.default_url_options = { host: Rails.application.credentials.dig(:email_provider, :host) }
-    config.action_mailer.raise_delivery_errors = true
-    config.action_mailer.perform_caching = false
     config.action_mailer.perform_deliveries = true
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
